@@ -9,10 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 public class ImaggaColorsAppl {
-    public static void main(String[] args) throws URISyntaxException {
+    public static void main(String[] args) {
 
         String imgUrl = "https://imagga.com/static/images/tagging/wind-farm-538576_640.jpg";
 
@@ -26,6 +25,7 @@ public class ImaggaColorsAppl {
         RequestEntity<String> request = new RequestEntity<>(headers, HttpMethod.GET, uri);
 
         ResponseEntity<Response> response = restTemplate.exchange(request,Response.class);
-        response.getBody().getResult().getColors().forEach(System.out::println);
+        response.getBody().getResult().getColors().getForeground_colors().forEach(System.out::println);
+
     }
 }
